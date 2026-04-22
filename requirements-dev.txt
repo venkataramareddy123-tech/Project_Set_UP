@@ -1,21 +1,21 @@
-# AI-First Framework Tools
+# ==============================================================================
+# 🌌 [FRAMEWORK CORE] - Do not remove these (The Beast's internal tools)
+# ==============================================================================
 ruff
 mypy
 pytest
+rich
+python-dotenv
 
-# Data & Backend
+# ==============================================================================
+# 🛠️ [DOMAIN LIBRARIES] - Project-specific dependencies (Edit freely)
+# ==============================================================================
 duckdb
 httpx
 pandas
 numpy
 pandas_market_calendars
-
-# Interface & Bot
 streamlit
 streamlit-aggrid
 plotly
 python-telegram-bot
-
-# Utilities
-rich
-python-dotenv

@@ -39,10 +39,17 @@ cat <<EOF > docs/ACTIVE_TASK.md
 (Pick a task from ROADMAP.md and run /continue)
 EOF
 
-# 4. Cleanup Example Code
+# 4. Cleanup Example Code and Libraries
 echo "🧹 Cleaning up example code..."
 rm -rf src/ingestion/* src/core/* tests/*
 touch src/core/__init__.py src/ingestion/__init__.py tests/__init__.py
+
+read -p "Do you want to wipe project-specific libraries (DuckDB, Telegram, etc.)? (y/n): " WIPE_LIBS
+if [ "$WIPE_LIBS" == "y" ]; then
+    # Keep only the framework section
+    sed -i '/🛠️ \[DOMAIN LIBRARIES\]/q' requirements-dev.txt
+    echo "✅ requirements-dev.txt reset to Framework Core."
+fi
 
 # 5. Reset Git (Optional)
 read -p "Do you want to reset Git history for a fresh start? (y/n): " RESET_GIT

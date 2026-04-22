@@ -1,0 +1,21 @@
+# AI-First Framework Tools
+ruff
+mypy
+pytest
+
+# Data & Backend
+duckdb
+httpx
+pandas
+numpy
+pandas_market_calendars
+
+# Interface & Bot
+streamlit
+streamlit-aggrid
+plotly
+python-telegram-bot
+
+# Utilities
+rich
+python-dotenv

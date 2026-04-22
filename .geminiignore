@@ -1,0 +1,25 @@
+# AI Ignore File - Token Optimization
+
+# Ignore the virtual environment (huge noise)
+venv/
+
+# Ignore caches and temporary files
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Ignore large data directories
+data/
+*.db
+*.sqlite
+
+# Ignore assets (images, icons)
+assets/
+*.png
+*.jpg
+*.ico
+
+# Ignore compiled files
+*.so
+*.pyc

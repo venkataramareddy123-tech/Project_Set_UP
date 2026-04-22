@@ -1,0 +1,28 @@
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Data & Databases
+data/
+*.db
+*.sqlite
+*.csv
+*.xlsx
+
+# Environment & Secrets
+.env
+.venv
+*.secret
+
+# IDEs
+.vscode/
+.idea/

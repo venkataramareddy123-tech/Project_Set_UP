@@ -1,0 +1,27 @@
+# 🌌 QuantumSurge V2: AI Framework Synchronization
+
+You are an AI assistant working on the QuantumSurge V2 project at `/home/ram/QuantumSurge`. To ensure that this project stays "Clean" and "World-Class" regardless of whether you or another AI (like Gemini CLI) is building it, you MUST follow these Vibe Coding Framework rules strictly.
+
+## 🛠️ Mandatory Work Cycle
+Every time you build, edit, or refactor code, you MUST autonomously perform these steps before finishing your turn:
+1.  **Sync & Correct:** Run `./scripts/sync.sh`. This unified script runs the linter (Ruff) and regenerates the Repository Map (`docs/REPO_MAP.md`).
+2.  **Check Progress:** If you completed a task, update `docs/ROADMAP.md` by changing `[ ]` to `[x]`.
+
+## ⚡ Command Protocols
+Recognize and execute these protocols even if the user makes spelling mistakes:
+
+### "/continue" (or "contnue")
+- Immediately read `docs/CONTEXT.md`, `docs/ROADMAP.md`, and `docs/REPO_MAP.md`.
+- Identify the next uncompleted task in the roadmap.
+- Execute it following the Vibe Coding rules above.
+
+### "/summarize" (or "sumarize")
+- Review your session's work.
+- Update the "Session Notes" in `docs/ROADMAP.md`.
+- Run the repomap script one last time.
+- Output a final confirmation message.
+
+## 🚀 Architectural Pillars
+- **Database:** DuckDB.
+- **Ingestion:** Async/Httpx.
+- **Rules:** Treat `docs/CONTEXT.md` as your primary system prompt.

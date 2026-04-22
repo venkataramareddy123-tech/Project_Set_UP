@@ -1,0 +1,2 @@
+description = "Summarize the current session, update project tracking, and prepare for handoff."
+prompt = "Please review the work done in this session, append a concise handoff note to the Session Notes in docs/ROADMAP.md, run ./scripts/sync.sh so linting and the repo map stay current, and provide a short saved-state summary including the current milestone, completed work, and next suggested step."

@@ -87,6 +87,68 @@ fi
 
 mkdir -p "src/$PACKAGE_NAME" tests/unit tests/integration docs/ADRs docs/knowledge .snapshots
 
+cat <<EOF > ARCHITECTURE.md
+# Architecture
+
+This is the canonical high-level design document for $PROJECT_NAME.
+
+Agents should treat this file as the top-down source of intent before turning work into milestones, tasks, and code changes.
+
+## Product Vision
+
+$PROJECT_DESCRIPTION
+
+## Target Users
+
+- Primary users:
+- Secondary users:
+- Operators or maintainers:
+
+## Core Capabilities
+
+- Capability 1:
+- Capability 2:
+- Capability 3:
+
+## System Shape
+
+Describe the intended architecture at a high level. Include major apps, services, modules, storage, external APIs, queues, background jobs, agents, or local tools.
+
+## Data Model
+
+Describe the important entities, state, files, databases, events, and data ownership boundaries.
+
+## Interfaces
+
+Describe user interfaces, APIs, CLIs, background jobs, integrations, and automation entrypoints.
+
+## Quality Requirements
+
+- Reliability:
+- Security:
+- Privacy:
+- Performance:
+- Observability:
+- Maintainability:
+
+## Constraints
+
+List technical, business, platform, budget, timeline, or deployment constraints that should guide implementation choices.
+
+## Open Questions
+
+- Question 1:
+- Question 2:
+
+## Agent Planning Rules
+
+1. Use this file to understand the full intended system before proposing work.
+2. Convert architecture intent into milestones in \`docs/ROADMAP.md\`.
+3. Convert the next milestone into one concrete task in \`docs/ACTIVE_TASK.md\`.
+4. Keep code changes small enough to verify with \`./scripts/sync.sh\`.
+5. Update this file when the big system idea or architecture changes materially.
+EOF
+
 cat <<EOF > README.md
 # $PROJECT_NAME
 
@@ -113,9 +175,10 @@ pip install -r requirements-dev.txt
 
 ## Next steps
 
-1. Replace the profile starter module with your first production slice.
-2. Add runtime dependencies for the chosen stack.
-3. Use \`docs/ROADMAP.md\` to sequence user-facing milestones.
+1. Fill in \`ARCHITECTURE.md\` with the full product and system idea.
+2. Convert that architecture into milestones in \`docs/ROADMAP.md\`.
+3. Replace the profile starter module with your first production slice.
+4. Add runtime dependencies for the chosen stack.
 EOF
 
 cat <<EOF > docs/ROADMAP.md
@@ -124,6 +187,7 @@ cat <<EOF > docs/ROADMAP.md
 ## Current milestone
 
 - [ ] Define the first user-facing outcome for $PROJECT_NAME
+- [ ] Fill in \`ARCHITECTURE.md\` with the intended system design
 - [ ] Replace the starter profile code in \`src/$PACKAGE_NAME/\`
 - [ ] Add project-specific verification beyond the framework smoke tests
 
@@ -298,6 +362,7 @@ from pathlib import Path
 def test_docs_exist() -> None:
     root = Path(__file__).resolve().parent.parent
     required = [
+        "ARCHITECTURE.md",
         "docs/ACTIVE_TASK.md",
         "docs/AGENT_CONTRACT.md",
         "docs/CONTEXT.md",

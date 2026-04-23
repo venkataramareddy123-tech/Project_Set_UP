@@ -11,6 +11,7 @@
     "scripts/restore_snapshot.py"
   ],
   "required_docs": [
+    "ARCHITECTURE.md",
     "docs/CONTEXT.md",
     "docs/ROADMAP.md",
     "docs/REPO_MAP.md",

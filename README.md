@@ -12,6 +12,7 @@ An opinionated boilerplate for building new software with CLI agents and humans 
 
 ## Included foundations
 
+- `ARCHITECTURE.md`: canonical top-down product and system design
 - `scripts/bootstrap.sh`: non-interactive project bootstrap with starter profiles
 - `scripts/check.sh`: lint, typecheck, tests, and dependency audit
 - `scripts/sync.sh`: fix, verify, and regenerate repository memory
@@ -60,10 +61,12 @@ python3 scripts/restore_snapshot.py before-refactor
 
 ## Workflow
 
-1. Define the first user-facing milestone in `docs/ROADMAP.md`.
-2. Ask your CLI agent to read `AGENTS.md`, `docs/CONTEXT.md`, and `docs/ACTIVE_TASK.md`.
-3. Work in small slices and run `./scripts/sync.sh` after each meaningful change.
-4. Commit only when `docs/SYSTEM_STATUS.md` reflects the expected machine-verified state.
+1. Write the big product and system idea in `ARCHITECTURE.md`.
+2. Break that architecture into milestones in `docs/ROADMAP.md`.
+3. Ask your CLI agent to read `AGENTS.md`, `ARCHITECTURE.md`, `docs/CONTEXT.md`, and `docs/ACTIVE_TASK.md`.
+4. Let the agent derive one concrete active task from the architecture and roadmap.
+5. Work in small slices and run `./scripts/sync.sh` after each meaningful change.
+6. Commit only when `docs/SYSTEM_STATUS.md` reflects the expected machine-verified state.
 
 `/continue` and `/summarize` are intended to be repo-local. Start the agent session from the project directory you want to work on, and the workflow should use that repository's local `docs/` and `.vibe/` state rather than any other project's memory.
 

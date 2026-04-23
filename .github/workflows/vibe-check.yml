@@ -20,7 +20,7 @@ jobs:
       - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install ruff mypy pytest httpx duckdb
+          pip install ruff mypy pytest coverage
 
       - name: 🛠️ Mock Environment for scripts
         run: |
@@ -39,13 +39,14 @@ jobs:
           mkdir -p ../temp_project
           cp -r . ../temp_project/
           cd ../temp_project
-          # Run bootstrap non-interactively
-          echo -e "TestProject\nTest Description\nn\nn" | ./scripts/bootstrap.sh
+          ./scripts/bootstrap.sh --name "TestProject" --description "Test Description" --profile cli --yes
           
           # Verify critical files still exist
           test -f scripts/sync.sh
           test -f docs/ROADMAP.md
           test -f docs/AGENT_CONTRACT.md
+          test -f src/testproject/cli.py
+          test -f scripts/snapshot_workspace.py
           
           # Verify sync still runs (it might fail if venv is missing, but scripts should exist)
           ./scripts/check.sh --ci || true

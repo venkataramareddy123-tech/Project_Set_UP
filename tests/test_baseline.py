@@ -20,6 +20,8 @@ def test_required_scripts_exist() -> None:
         "scripts/fix.sh",
         "scripts/install_hooks.sh",
         "scripts/sync.sh",
+        "scripts/snapshot_workspace.py",
+        "scripts/restore_snapshot.py",
     ]
     for relative_path in required:
         assert (root / relative_path).exists(), f"Missing required file: {relative_path}"

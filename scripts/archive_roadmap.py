@@ -1,7 +1,11 @@
 import time
 from pathlib import Path
 
-def archive_roadmap():
+
+DEFAULT_CHANGELOG_HEADER = "# Changelog\n"
+
+
+def archive_roadmap() -> None:
     root_path = Path(__file__).parent.parent
     roadmap_path = root_path / "docs" / "ROADMAP.md"
     changelog_path = root_path / "docs" / "CHANGELOG.md"
@@ -10,14 +14,14 @@ def archive_roadmap():
         print("Roadmap not found. Skipping archive.")
         return
 
-    with open(roadmap_path, "r") as f:
-        lines = f.readlines()
+    with roadmap_path.open("r", encoding="utf-8") as file:
+        lines = file.readlines()
 
-    completed_tasks = []
-    remaining_lines = []
-    
+    completed_tasks: list[str] = []
+    remaining_lines: list[str] = []
+
     for line in lines:
-        if "- [x]" in line.lower() or "- [X]" in line:
+        if "- [x]" in line.lower():
             completed_tasks.append(line.strip())
         else:
             remaining_lines.append(line)
@@ -26,22 +30,24 @@ def archive_roadmap():
         print("No completed tasks found to archive.")
         return
 
-    # Update Roadmap (Remove [x] items)
-    with open(roadmap_path, "w") as f:
-        f.writelines(remaining_lines)
+    with roadmap_path.open("w", encoding="utf-8") as file:
+        file.writelines(remaining_lines)
 
-    # Append to Changelog
     log_entry = [f"\n## [{time.strftime('%Y-%m-%d')}] Sync Archive\n"]
-    log_entry.extend([f"{task}" for task in completed_tasks])
+    log_entry.extend(completed_tasks)
     log_entry.append("\n")
 
-    mode = "a" if changelog_path.exists() else "w"
-    with open(changelog_path, mode) as f:
-        if mode == "w":
-            f.write("# 📜 QuantumSurge V2: Project Changelog\n")
-        f.write("\n".join(log_entry))
+    if changelog_path.exists():
+        with changelog_path.open("a", encoding="utf-8") as file:
+            file.write("\n".join(log_entry))
+    else:
+        with changelog_path.open("w", encoding="utf-8") as file:
+            file.write(DEFAULT_CHANGELOG_HEADER)
+            file.write("\n".join(log_entry))
 
-    print(f"✅ Archived {len(completed_tasks)} tasks to {changelog_path.relative_to(root_path)}")
+    relative_path = changelog_path.relative_to(root_path)
+    print(f"✅ Archived {len(completed_tasks)} tasks to {relative_path}")
+
 
 if __name__ == "__main__":
     archive_roadmap()

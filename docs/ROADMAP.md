@@ -2,9 +2,9 @@
 
 ## Current milestone
 
-- [ ] Define the first product goal for this project
-- [ ] Create the first real module under `src/`
-- [ ] Replace the starter tests with project-specific tests
+- [ ] Strengthen the template from a lightweight scaffold into a production-ready starter
+- [ ] Add safer experiment and rollback utilities
+- [ ] Expand bootstrap support for multiple software profiles
 
 ## Backlog
 
@@ -15,3 +15,4 @@
 ## Session notes
 
 - 2026-04-23: Template reset into a neutral agent-first starter.
+- 2026-04-23: Upgraded the starter toward production-ready bootstrap profiles, safer iteration tooling, and more trustworthy status reporting.

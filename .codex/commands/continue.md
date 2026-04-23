@@ -1,6 +1,6 @@
 # /continue
 
-Sync to the current QuantumSurge state and plan the next implementation step.
+Sync to the current project state and plan the next implementation step.
 
 ## Workflow
 
@@ -8,4 +8,4 @@ Sync to the current QuantumSurge state and plan the next implementation step.
 2. Identify the current milestone, the latest session notes, and the next unchecked roadmap task.
 3. Summarize where work stopped and what context matters for the next session.
 4. Produce a short, concrete implementation plan for the next task instead of executing it by default.
-5. If the user explicitly asks to continue building in the same turn, execute the planned task using the Vibe Coding rules.
+5. If the user explicitly asks to continue building in the same turn, execute the planned task using the repository workflow rules.

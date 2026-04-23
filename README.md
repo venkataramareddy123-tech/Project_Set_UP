@@ -1,24 +1,26 @@
-# Agent-First Vibe Coding Starter
+# Agent-First Production Starter
 
-An opinionated starter template for CLI-agent driven projects. It gives Codex, Gemini, Cursor, or a human operator a shared operating model: deterministic checks, lightweight repository memory, and a small set of scripts that keep the repo synchronized.
+An opinionated boilerplate for building new software with CLI agents and humans in the same repo. It is designed for fast project setup, trustworthy verification, safe experimentation, and clean handoffs across sessions.
 
-## What this template is for
+## What it is good at
 
-- Starting a new project with agent-friendly conventions already in place
-- Keeping `docs/` aligned with the real repository state
-- Giving agents a trustworthy source of project health in `.vibe/check_summary.json`
-- Reducing context waste with a generated repo map and explicit task files
+- Bootstrapping new projects with agent-friendly repository memory already in place
+- Supporting web, service, CLI, desktop, library, and sandbox-style starts
+- Keeping `docs/` synchronized with actual repository state
+- Making verification results explicit in `.vibe/check_summary.json` and `docs/SYSTEM_STATUS.md`
+- Giving you a lightweight way to snapshot and restore local experiments
 
-## What is included
+## Included foundations
 
-- `scripts/check.sh`: runs lint, typecheck, tests, and dependency audit
-- `scripts/sync.sh`: runs fixes, checks, and regenerates repo memory files
-- `scripts/bootstrap.sh`: resets the template for a new project
-- `scripts/install_hooks.sh`: installs a pre-commit hook that runs `sync.sh`
-- `docs/AGENT_CONTRACT.md`: the rules agents should follow
-- `docs/CONTEXT.md`: the `/continue` and `/summarize` workflow
-- `docs/REPO_MAP.md`: generated structural overview of the repository
-- `docs/SYSTEM_STATUS.md`: generated dashboard from machine-readable check output
+- `scripts/bootstrap.sh`: non-interactive project bootstrap with starter profiles
+- `scripts/check.sh`: lint, typecheck, tests, and dependency audit
+- `scripts/sync.sh`: fix, verify, and regenerate repository memory
+- `scripts/snapshot_workspace.py`: capture a local workspace snapshot before risky changes
+- `scripts/restore_snapshot.py`: restore a previous snapshot without relying on git history
+- `docs/AGENT_CONTRACT.md`: workflow rules for agents
+- `docs/CONTEXT.md`: `/continue` and `/summarize` protocol
+- `docs/REPO_MAP.md`: generated code overview
+- `docs/SYSTEM_STATUS.md`: generated verification dashboard
 
 ## Quick start
 
@@ -28,20 +30,42 @@ cd my-project
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements-dev.txt
-./scripts/bootstrap.sh
+./scripts/bootstrap.sh --name "My Project" --description "Short summary" --profile service --yes
 ./scripts/install_hooks.sh
 ./scripts/sync.sh
 ```
 
-## Recommended workflow
+## Profiles
 
-1. Update `docs/ROADMAP.md` with the first milestone.
-2. Tell your CLI agent to read `AGENTS.md`, `docs/CONTEXT.md`, and `docs/ACTIVE_TASK.md`.
-3. Implement in small steps.
-4. Run `./scripts/sync.sh` after edits.
-5. Commit only when `docs/SYSTEM_STATUS.md` reflects a healthy state.
+- `library`: package-first scaffold
+- `cli`: command-oriented starter
+- `web`: web app entrypoint scaffold
+- `service`: background worker or API service starter
+- `desktop`: desktop application starter
+- `sandbox`: experiment-first layout with an `experiments/` area
+
+## Safe iteration
+
+Before large edits or speculative changes:
+
+```bash
+python3 scripts/snapshot_workspace.py before-refactor
+```
+
+Restore later if needed:
+
+```bash
+python3 scripts/restore_snapshot.py before-refactor
+```
+
+## Workflow
+
+1. Define the first user-facing milestone in `docs/ROADMAP.md`.
+2. Ask your CLI agent to read `AGENTS.md`, `docs/CONTEXT.md`, and `docs/ACTIVE_TASK.md`.
+3. Work in small slices and run `./scripts/sync.sh` after each meaningful change.
+4. Commit only when `docs/SYSTEM_STATUS.md` reflects the expected machine-verified state.
 
 ## Notes
 
 - Generated runtime artifacts in `.vibe/*.log` and `.vibe/check_summary.json` are intentionally not committed.
-- The template is deliberately neutral. Add domain libraries and source structure only after bootstrapping the new project.
+- The starter remains stack-neutral after bootstrap. Add runtime dependencies and deployment wiring for your chosen platform.

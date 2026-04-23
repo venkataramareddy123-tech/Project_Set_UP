@@ -6,7 +6,9 @@
     "scripts/fix.sh",
     "scripts/check.sh",
     "scripts/sync.sh",
-    "scripts/install_hooks.sh"
+    "scripts/install_hooks.sh",
+    "scripts/snapshot_workspace.py",
+    "scripts/restore_snapshot.py"
   ],
   "required_docs": [
     "docs/CONTEXT.md",
@@ -14,6 +16,12 @@
     "docs/REPO_MAP.md",
     "docs/ACTIVE_TASK.md",
     "docs/AGENT_CONTRACT.md"
+  ],
+  "expected_checks": [
+    "lint",
+    "typecheck",
+    "tests",
+    "dependency_audit"
   ],
   "required_status_files": [
     ".vibe/check_summary.json",

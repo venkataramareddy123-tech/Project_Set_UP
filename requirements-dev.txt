@@ -1,8 +1,7 @@
-# ==============================================================================
-# 🌌 [FRAMEWORK CORE] - Do not remove these (The Beast's internal tools)
-# ==============================================================================
+# Framework tooling used by the starter template itself.
 ruff
 mypy
 pytest
 rich
 python-dotenv
+coverage

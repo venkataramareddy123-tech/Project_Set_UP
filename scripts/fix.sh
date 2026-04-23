@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-# Change to project root
 cd "$(dirname "$0")/.."
 
-echo "🔧 Running Vibe Coding Fix (Auto-Heal)..."
+echo "🔧 Running auto-fix..."
 
-# 1. Format and Lint with Fix
-if [ -f "./venv/bin/ruff" ]; then
-    echo "🔍 Fixing lint issues with Ruff..."
-    ./venv/bin/ruff check . --fix
-    echo "✨ Lint fixes applied."
+if [[ -x "./venv/bin/ruff" ]]; then
+    RUFF_BIN="./venv/bin/ruff"
+elif command -v ruff >/dev/null 2>&1; then
+    RUFF_BIN="$(command -v ruff)"
 else
-    echo "⚠️ Warning: Ruff not found in ./venv/bin/ruff. Skipping auto-fix."
+    RUFF_BIN=""
 fi
 
-# 2. Add other auto-fixers here (e.g., black, isort if used)
+if [[ -n "$RUFF_BIN" ]]; then
+    "$RUFF_BIN" check . --fix
+    echo "✨ Ruff fixes applied."
+else
+    echo "⚠️ Ruff not found. Skipping auto-fix."
+fi
 
 echo "✅ Fix complete."

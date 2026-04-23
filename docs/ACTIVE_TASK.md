@@ -1,13 +1,14 @@
 # 🎯 Current Active Task
-> **Status:** 🏗️ In Progress
+> **Status:** 🏗️ Waiting for Task
 
 ## 📝 Task Definition
-(Extracted from ROADMAP.md)
+(Select the next task from `docs/ROADMAP.md`.)
 
 ## 🛠️ Micro-Steps
-- [ ] Step 1
-- [ ] Step 2
+- [ ] Define the task
+- [ ] Implement the smallest useful slice
+- [ ] Add or update tests
 
 ## 🧪 Verification Steps
-- [ ] Test 1
-- [ ] Test 2
+- [ ] Run `./scripts/sync.sh`
+- [ ] Confirm `docs/SYSTEM_STATUS.md` matches the result

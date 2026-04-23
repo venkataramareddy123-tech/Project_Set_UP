@@ -11,6 +11,10 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
+# Generated vibe state
+.vibe/*.log
+.vibe/check_summary.json
+
 # Data & Databases
 data/
 *.db

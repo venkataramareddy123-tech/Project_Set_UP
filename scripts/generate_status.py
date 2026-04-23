@@ -46,9 +46,11 @@ def generate_system_status():
     todos = []
     
     for path in [src_path, test_path]:
-        if not path.exists(): continue
+        if not path.exists():
+            continue
         for py_file in path.rglob("*.py"):
-            if "__pycache__" in str(py_file): continue
+            if "__pycache__" in str(py_file):
+                continue
             try:
                 with open(py_file, "r", encoding="utf-8") as f:
                     lines = f.readlines()
@@ -57,7 +59,8 @@ def generate_system_status():
                         if "TODO:" in line or "FIXME:" in line:
                             clean_line = line.strip().replace("#", "").strip()
                             todos.append(f"- `{py_file.relative_to(root_path)}:{i+1}`: {clean_line}")
-            except Exception: pass
+            except Exception:
+                pass
 
     status_md.append("## 📈 Project Metrics")
     status_md.append(f"- **Total Lines of Python Code:** {total_loc}")
@@ -72,8 +75,10 @@ def generate_system_status():
     status_md.append("## ✅ System Health (Machine-Verified)")
     
     def get_icon(status_val):
-        if status_val == "pass": return "✅"
-        if status_val == "fail": return "❌"
+        if status_val == "pass":
+            return "✅"
+        if status_val == "fail":
+            return "❌"
         return "❓"
 
     if checks:

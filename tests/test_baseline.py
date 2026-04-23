@@ -1,15 +1,25 @@
-"""
-Baseline tests for the QuantumSurge V2 framework.
-"""
+from pathlib import Path
 
-def test_sync_system():
-    """Verify that the test suite is correctly integrated into the sync loop."""
-    assert True
 
-def test_duckdb_import():
-    """Verify that core dependencies are available."""
-    try:
-        import duckdb
-        assert True
-    except ImportError:
-        assert False, "DuckDB not found in environment."
+def test_required_docs_exist() -> None:
+    root = Path(__file__).resolve().parent.parent
+    required = [
+        "docs/ACTIVE_TASK.md",
+        "docs/AGENT_CONTRACT.md",
+        "docs/CONTEXT.md",
+        "docs/ROADMAP.md",
+    ]
+    for relative_path in required:
+        assert (root / relative_path).exists(), f"Missing required file: {relative_path}"
+
+
+def test_required_scripts_exist() -> None:
+    root = Path(__file__).resolve().parent.parent
+    required = [
+        "scripts/check.sh",
+        "scripts/fix.sh",
+        "scripts/install_hooks.sh",
+        "scripts/sync.sh",
+    ]
+    for relative_path in required:
+        assert (root / relative_path).exists(), f"Missing required file: {relative_path}"

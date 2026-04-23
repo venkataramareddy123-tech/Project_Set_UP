@@ -6,16 +6,3 @@ mypy
 pytest
 rich
 python-dotenv
-
-# ==============================================================================
-# 🛠️ [DOMAIN LIBRARIES] - Project-specific dependencies (Edit freely)
-# ==============================================================================
-duckdb
-httpx
-pandas
-numpy
-pandas_market_calendars
-streamlit
-streamlit-aggrid
-plotly
-python-telegram-bot

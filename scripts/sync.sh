@@ -1,39 +1,30 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-# Change to project root
 cd "$(dirname "$0")/.."
 
-echo "🚀 Running Vibe Coding 3.1 Sync (Orchestrator)..."
+echo "🚀 Running sync..."
 
-# 1. Auto-Heal
-./scripts/fix.sh
-
-# 2. Strict Check
-./scripts/check.sh
-
-# 3. Documentation and Maps
-echo "📜 Updating Project Documentation..."
-
-# Archive Roadmap
-if [ -f "./venv/bin/python" ]; then
-    ./venv/bin/python scripts/archive_roadmap.py >/dev/null
+if [[ -x "./venv/bin/python" ]]; then
+    PYTHON_BIN="./venv/bin/python"
 else
-    python3 scripts/archive_roadmap.py >/dev/null
+    PYTHON_BIN="python3"
 fi
 
-# Regenerate Repository Map
-if [ -f "./venv/bin/python" ]; then
-    ./venv/bin/python scripts/generate_repomap.py >/dev/null
-else
-    python3 scripts/generate_repomap.py >/dev/null
+CHECK_EXIT=0
+
+./scripts/fix.sh || true
+./scripts/check.sh || CHECK_EXIT=$?
+
+echo "📜 Updating repository memory..."
+
+"$PYTHON_BIN" scripts/archive_roadmap.py >/dev/null || true
+"$PYTHON_BIN" scripts/generate_repomap.py >/dev/null
+"$PYTHON_BIN" scripts/generate_status.py >/dev/null
+
+if [[ $CHECK_EXIT -ne 0 ]]; then
+    echo "❌ Sync finished with failing checks."
+    exit "$CHECK_EXIT"
 fi
 
-# Generate System Status Dashboard
-if [ -f "./venv/bin/python" ]; then
-    ./venv/bin/python scripts/generate_status.py >/dev/null
-else
-    python3 scripts/generate_status.py >/dev/null
-fi
-
-echo "✅ Sync complete. Project is robust and mapped."
+echo "✅ Sync complete."

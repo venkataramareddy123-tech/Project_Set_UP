@@ -1,16 +1,20 @@
-# 🌌 QuantumSurge V2: AI Instructions
+# Agent Instructions
 
-## 🚨 MANDATORY CONTEXT
-This is an "AI-First" project. Every AI session MUST begin by reading:
-1. `docs/CONTEXT.md` (Operational protocols)
-2. `docs/ROADMAP.md` (Current progress)
-3. `docs/REPO_MAP.md` (Code architecture)
+This is an agent-first starter repository.
 
-## ⚡ Slash Commands
-You have access to custom project commands:
-- **/continue**: Reads project state and plans the next implementation step.
-- **/summarize**: Finalizes the session and records the handoff state.
+## Mandatory context
 
-## 🛠️ Vibe Coding Rules
-- ALWAYS run `./scripts/sync.sh` after edits.
-- Stay strictly within `/home/ram/QuantumSurge`.
+Start each session by reading:
+1. `docs/CONTEXT.md`
+2. `docs/ACTIVE_TASK.md`
+3. `docs/SYSTEM_STATUS.md`
+4. `docs/REPO_MAP.md`
+
+## Workflow prompts
+
+- `/continue`: inspect repository state and propose or execute the next step
+- `/summarize`: finalize the session and record the handoff state
+
+## Core rule
+
+Always run `./scripts/sync.sh` after edits before claiming repository health.

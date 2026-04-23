@@ -8,8 +8,8 @@ def generate_repo_map(root_dir, output_file):
     # Exclude directories that are not part of the source code or docs
     exclude_dirs = {".venv", "venv", ".git", ".ruff_cache", "__pycache__", "data", "tests"}
     
-    repo_map.append("# 🗺️ QuantumSurge V2: Repository Map\n")
-    repo_map.append("This map provides a structural overview of the codebase to optimize AI context usage.\n")
+    repo_map.append("# Repository Map\n")
+    repo_map.append("This file is generated to give agents a lightweight overview of the repository.\n")
 
     # Scan all python files in the project root
     for py_file in sorted(root_path.rglob("*.py")):

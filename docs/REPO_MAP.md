@@ -1,6 +1,6 @@
-# 🗺️ QuantumSurge V2: Repository Map
+# Repository Map
 
-This map provides a structural overview of the codebase to optimize AI context usage.
+This file is generated to give agents a lightweight overview of the repository.
 
 ### 📄 `scripts/archive_roadmap.py`
 #### 🔧 Function: `archive_roadmap()`
@@ -17,20 +17,7 @@ This map provides a structural overview of the codebase to optimize AI context u
 
 ### 📄 `src/__init__.py`
 
-### 📄 `src/core/__init__.py`
-
-### 📄 `src/core/chaos.py`
-#### 🔧 Function: `calculate_wealth(amount)`
-  > Calculates wealth by doubling the amount.
-
-### 📄 `src/core/database.py`
-#### 🏛️ Class: `DatabaseManager`
-  > Manages the DuckDB connection and high-performance analytical storage.
-  - `def __init__(self, db_path)`
-  - `def get_connection(self)`
-  - `def close(self)`
-
-### 📄 `src/ingestion/async_fetcher.py`
-#### 🏛️ Class: `AsyncFetcher`
-  > Base class for high-concurrency data ingestion using httpx and asyncio.
-  - `def __init__(self, timeout, concurrency_limit)`
+### 📄 `src/starter.py`
+  > **Module Context:** Minimal starter module for new projects.
+#### 🔧 Function: `starter_message()`
+  > Return a small marker used by the starter tests.

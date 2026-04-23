@@ -1,1 +1,0 @@
-./scripts/check.sh: line 36: ./venv/bin/mypy: No such file or directory

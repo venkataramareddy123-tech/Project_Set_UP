@@ -1,30 +1,23 @@
-# 🌌 QuantumSurge V2: AI Framework Synchronization
+# Agent Framework Synchronization
 
-You are an AI assistant working on the QuantumSurge V2 project at `/home/ram/QuantumSurge`. To ensure that this project stays "Clean" and "World-Class" regardless of whether you or another AI (like Gemini CLI) is building it, you MUST follow these Vibe Coding Framework rules strictly.
+You are working inside an agent-first starter repository. Keep the repository trustworthy for both humans and other agents.
 
-## 🛠️ Mandatory Work Cycle
-Every time you build, edit, or refactor code, you MUST autonomously perform these steps before finishing your turn:
-1.  **Sync & Correct:** Run `./scripts/sync.sh`. This unified script runs the linter (Ruff) and regenerates the Repository Map (`docs/REPO_MAP.md`).
-2.  **Check Progress:** If you completed a task, update `docs/ROADMAP.md` by changing `[ ]` to `[x]`.
+## Mandatory work cycle
 
-## ⚡ Command Protocols
-Recognize and execute these protocols even if the user makes spelling mistakes:
+After any edit:
+1. Run `./scripts/sync.sh`.
+2. Update task state in `docs/ROADMAP.md` or `docs/ACTIVE_TASK.md` when needed.
 
-### "/continue" (or "contnue")
-- In Codex, this is a manual workflow prompt, not a guaranteed slash-menu autocomplete entry.
-- Immediately read `docs/CONTEXT.md`, `docs/ROADMAP.md`, and `docs/REPO_MAP.md`.
-- Identify the current milestone, latest handoff context, and next uncompleted task in the roadmap.
-- Summarize where work stopped and produce the next concrete implementation plan by default.
-- Only execute the task if the user explicitly asks to continue building in the same turn.
+## Workflow prompts
 
-### "/summarize" (or "sumarize")
-- In Codex, this is a manual workflow prompt, not a guaranteed slash-menu autocomplete entry.
-- Review your session's work.
-- Append a concise handoff note to the "Session Notes" in `docs/ROADMAP.md`.
-- Run `./scripts/sync.sh` one last time.
-- Output a final confirmation message.
+### `/continue`
+- Read `docs/CONTEXT.md`, `docs/ACTIVE_TASK.md`, `docs/SYSTEM_STATUS.md`, and `docs/REPO_MAP.md`.
+- Inspect `.vibe/test_failures.log` first when it exists.
+- Propose the next concrete step by default.
+- Only execute immediately when the user explicitly asks for execution.
 
-## 🚀 Architectural Pillars
-- **Database:** DuckDB.
-- **Ingestion:** Async/Httpx.
-- **Rules:** Treat `docs/CONTEXT.md` as your primary system prompt.
+### `/summarize`
+- Review the session.
+- Append a concise handoff note to `docs/ROADMAP.md`.
+- Run `./scripts/sync.sh`.
+- Output a brief summary of the resulting state.

@@ -1,27 +1,22 @@
-# 🌌 QuantumSurge V2: AI Framework Synchronization
+# Agent Framework Synchronization
 
-You are an AI assistant working on the QuantumSurge V2 project at `/home/ram/QuantumSurge`. To ensure that this project stays "Clean" and "World-Class" regardless of whether you or another AI (like Gemini CLI) is building it, you MUST follow these Vibe Coding Framework rules strictly.
+This repository is designed to be safe for alternating agent sessions.
 
-## 🛠️ Mandatory Work Cycle
-Every time you build, edit, or refactor code, you MUST autonomously perform these steps before finishing your turn:
-1.  **Sync & Correct:** Run `./scripts/sync.sh`. This unified script runs the linter (Ruff) and regenerates the Repository Map (`docs/REPO_MAP.md`).
-2.  **Check Progress:** If you completed a task, update `docs/ROADMAP.md` by changing `[ ]` to `[x]`.
+## Mandatory work cycle
 
-## ⚡ Command Protocols
-Recognize and execute these protocols even if the user makes spelling mistakes:
+After any edit:
+1. Run `./scripts/sync.sh`.
+2. Update `docs/ROADMAP.md` or `docs/ACTIVE_TASK.md` if the task state changed.
 
-### "/continue" (or "contnue")
-- Immediately read `docs/CONTEXT.md`, `docs/ROADMAP.md`, and `docs/REPO_MAP.md`.
-- Identify the next uncompleted task in the roadmap.
-- Execute it following the Vibe Coding rules above.
+## Workflow prompts
 
-### "/summarize" (or "sumarize")
-- Review your session's work.
-- Update the "Session Notes" in `docs/ROADMAP.md`.
-- Run the repomap script one last time.
-- Output a final confirmation message.
+### `/continue`
+- Read `docs/CONTEXT.md`, `docs/ACTIVE_TASK.md`, `docs/SYSTEM_STATUS.md`, and `docs/REPO_MAP.md`.
+- Check `.vibe/test_failures.log` if it exists.
+- Plan the next concrete step by default.
 
-## 🚀 Architectural Pillars
-- **Database:** DuckDB.
-- **Ingestion:** Async/Httpx.
-- **Rules:** Treat `docs/CONTEXT.md` as your primary system prompt.
+### `/summarize`
+- Review the session.
+- Add a short handoff note to `docs/ROADMAP.md`.
+- Run `./scripts/sync.sh`.
+- Output a concise closing state.

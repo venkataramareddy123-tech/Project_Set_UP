@@ -1,27 +1,27 @@
-# QuantumSurge Agent Workflow
+# Agent Workflow
 
-This repository uses a persistent handoff workflow so Codex and Gemini can alternate work without losing context.
+This repository is meant to support alternating work between CLI agents and humans without losing state.
 
-## Read First
+## Read first
+
 - `docs/CONTEXT.md`
-- `docs/ROADMAP.md`
+- `docs/ACTIVE_TASK.md`
 - `docs/SYSTEM_STATUS.md`
 - `docs/REPO_MAP.md`
 
-Treat `docs/CONTEXT.md` as the detailed operating protocol. Use the other files as the current project state.
+Treat `docs/CONTEXT.md` as the workflow contract and the other files as current repository memory.
 
-## Manual Workflow Commands
-If the user types `/continue` or a close misspelling such as `contnue`, interpret it as a workflow command even if the Codex UI does not expose it in slash autocomplete.
+## Workflow commands
+
+If the user types `/continue` or a close misspelling, treat it as a workflow command even if the client does not expose it as a real slash command.
 
 For `/continue`:
-1. Read the files listed above.
-2. Check `.vibe/test_failures.log` first. If it exists and is non-empty, address those failures before new feature work.
-3. Identify the current milestone, latest handoff context, and next unchecked roadmap task.
+1. Read the files above.
+2. Check `.vibe/test_failures.log` first when it exists and is non-empty.
+3. Identify the current task, current failure state, and next concrete implementation step.
 4. Summarize where work stopped.
-5. Produce the next concrete implementation plan by default.
-6. Execute the task in the same turn only if the user explicitly asks to continue building immediately.
-
-If the user types `/summarize` or a close misspelling such as `sumarize`, interpret it as the end-of-session handoff command.
+5. Produce the next execution plan by default.
+6. Only start implementing in the same turn if the user explicitly asks for execution.
 
 For `/summarize`:
 1. Review the work completed in the current session.
@@ -29,15 +29,10 @@ For `/summarize`:
 3. Run `./scripts/sync.sh`.
 4. Confirm what changed and what should happen next.
 
-## Mandatory Maintenance
+## Maintenance rules
+
 After any code edit:
 1. Run `./scripts/sync.sh`.
-2. If a roadmap item was completed, update `docs/ROADMAP.md`.
+2. Update `docs/ROADMAP.md` if task state changed.
 
-## Architectural Memory
-For significant architectural decisions, create an ADR in `docs/ADRs/` with context, decision, and consequences.
-
-## Constraints
-- Work inside `/home/ram/QuantumSurge`.
-- Prefer `docs/REPO_MAP.md` for codebase orientation before rereading many source files.
-- Keep instructions consistent with `docs/CONTEXT.md`.
+For significant architectural decisions, create an ADR in `docs/ADRs/`.

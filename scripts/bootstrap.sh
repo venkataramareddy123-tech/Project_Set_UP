@@ -1,67 +1,95 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-echo "🚀 Vibe Coding: Project Bootstrapper"
-echo "-----------------------------------"
+cd "$(dirname "$0")/.."
 
-read -p "Enter your new Project Name (e.g., SkyNet): " NEW_NAME
-read -p "Enter a short description: " DESC
+echo "🚀 Agent-First Project Bootstrapper"
+echo "----------------------------------"
 
-# 1. Rebrand Files
-echo "🏷️  Rebranding files to $NEW_NAME..."
-find . -type f -not -path '*/.*' -exec sed -i "s/QuantumSurge V2/$NEW_NAME/g" {} +
-find . -type f -not -path '*/.*' -exec sed -i "s/QuantumSurge/$NEW_NAME/g" {} +
+PROJECT_NAME="${1:-}"
 
-# 2. Reset Roadmap and Changelog
-echo "📋 Resetting Roadmap and Changelog..."
+if [[ -z "$PROJECT_NAME" ]]; then
+    read -r -p "Project name: " PROJECT_NAME
+fi
+
+if [[ -z "$PROJECT_NAME" ]]; then
+    echo "Project name is required."
+    exit 1
+fi
+
+read -r -p "Short description: " PROJECT_DESCRIPTION
+
+cat <<EOF > README.md
+# $PROJECT_NAME
+
+$PROJECT_DESCRIPTION
+
+This repository was bootstrapped from the Agent-First Vibe Coding Starter.
+EOF
+
 cat <<EOF > docs/ROADMAP.md
-# 🗺️ $NEW_NAME: Roadmap & Progress Tracker
+# Roadmap
 
-## Current Milestone: [Phase 1] Foundation
-- [ ] Initialize $NEW_NAME core structure.
-- [ ] Define first architectural pillar.
+## Current milestone
 
-## Session Notes
-- **$(date +%Y-%m-%d):** Project bootstrapped via Ultimate Vibe Coding Framework.
+- [ ] Define the first user-facing outcome for $PROJECT_NAME
+- [ ] Create the first project module under \`src/\`
+- [ ] Replace the starter tests with project-specific tests
+
+## Backlog
+
+- [ ] Add project dependencies to \`requirements-dev.txt\`
+- [ ] Create ADRs for major architecture decisions
+
+## Session notes
+
+- $(date +%Y-%m-%d): Bootstrapped $PROJECT_NAME from the starter template.
 EOF
 
 cat <<EOF > docs/CHANGELOG.md
-# 📜 $NEW_NAME: Project Changelog
-(Tasks archived from ROADMAP.md will appear here)
+# Changelog
+
+Completed roadmap items can be archived here.
 EOF
 
-# 3. Clear Active Task
 cat <<EOF > docs/ACTIVE_TASK.md
 # 🎯 Current Active Task
 > **Status:** 🏗️ Waiting for Task
 
 ## 📝 Task Definition
-(Pick a task from ROADMAP.md and run /continue)
+(Select the next task from \`docs/ROADMAP.md\`.)
+
+## 🛠️ Micro-Steps
+- [ ] Define the task
+- [ ] Implement the smallest useful slice
+- [ ] Add or update tests
+
+## 🧪 Verification Steps
+- [ ] Run \`./scripts/sync.sh\`
+- [ ] Confirm \`docs/SYSTEM_STATUS.md\` matches the result
 EOF
 
-# 4. Cleanup Example Code and Libraries
-echo "🧹 Cleaning up example code..."
-rm -rf src/ingestion/* src/core/* tests/*
-touch src/core/__init__.py src/ingestion/__init__.py tests/__init__.py
+echo "🧹 Resetting starter source files..."
+find src -type f ! -name "__init__.py" -delete
+find tests -type f ! -name "__init__.py" -delete
 
-read -p "Do you want to wipe project-specific libraries (DuckDB, Telegram, etc.)? (y/n): " WIPE_LIBS
-if [ "$WIPE_LIBS" == "y" ]; then
-    # Keep only the framework section
-    sed -i '/🛠️ \[DOMAIN LIBRARIES\]/q' requirements-dev.txt
-    echo "✅ requirements-dev.txt reset to Framework Core."
-fi
+cat <<EOF > tests/test_baseline.py
+from pathlib import Path
 
-# 5. Reset Git (Optional)
-read -p "Do you want to reset Git history for a fresh start? (y/n): " RESET_GIT
-if [ "$RESET_GIT" == "y" ]; then
-    rm -rf .git
-    git init
-    git branch -m main
-    echo "✨ Git history reset."
-fi
 
-# 6. Install Hooks
-echo "🪝  Installing Git hooks..."
+def test_docs_exist() -> None:
+    root = Path(__file__).resolve().parent.parent
+    required = [
+        "docs/ACTIVE_TASK.md",
+        "docs/AGENT_CONTRACT.md",
+        "docs/CONTEXT.md",
+        "docs/ROADMAP.md",
+    ]
+    for relative_path in required:
+        assert (root / relative_path).exists()
+EOF
+
+echo "🪝 Installing hooks..."
 ./scripts/install_hooks.sh
 
-echo "✅ $NEW_NAME is ready for Vibe Coding."
+echo "✅ $PROJECT_NAME is ready."

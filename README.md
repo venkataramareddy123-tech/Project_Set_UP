@@ -1,28 +1,22 @@
-# 🌌 The Ultimate Vibe Coding Boilerplate (v3.0)
+# 🌌 The Ultimate Vibe Coding Boilerplate (v3.1)
 
-> **"Code at the speed of thought, governed by the speed of logic."**
+> **"Machine-Trustworthy. Agent-First. Deterministic."**
 
-This is not just a repository; it is an **Autonomous Software Node**. This boilerplate was designed to solve the three greatest challenges in AI-assisted development: **Context Amnesia**, **Attention Dilution**, and **Architectural Desync**.
-
-By decentralizing project intelligence into the repository itself, this framework ensures that any AI agent (Gemini, Codex, Cursor, etc.) or human developer can pick up the project and immediately understand the "Vibe," the "Why," and the "Next Step."
+This is an **Autonomous Software Node** designed for the age of AI coding agents. Unlike traditional boilerplates, this framework prioritizes **machine-truthful verification** over human-readable promises. It is built to ensure that any CLI agent (Gemini, Codex, Cursor) can operate with 100% architectural sovereignty through rigid contracts and deterministic status signals.
 
 ---
 
 ## 🚀 Key Features
 
-### 1. The AI Handshake (Slash Protocols)
-Custom-built protocols that synchronize the agent with the project state.
-- **/continue**: Triggers a deep-sync. The agent reads the `CONTEXT.md`, the `SYSTEM_STATUS.md`, and the `ACTIVE_TASK.md` to plan and execute the next micro-step.
-- **/summarize**: Safely finalizes a session, archiving progress and recording the "handoff state" for the next agent.
-- **/review**: An autonomous QA gate where the AI acts as a Senior Staff Engineer to audit its own code before committing.
-- **/commit**: Automates high-quality Conventional Commits based on the staged diff.
+### 1. The Machine-Truth Protocol
+- **Deterministic State**: System health is not "guessed"; it is verified and stored in `.vibe/check_summary.json` following a strict schema.
+- **Agent Contract**: A binding set of rules in `docs/AGENT_CONTRACT.md` that governs how AI interacts with your code.
+- **Hard Guardrails**: The `./scripts/check.sh` command is a strict quality gate that blocks commits and deployment on any failure (lint, type, test, or dependency).
 
-### 2. The Robustness Suite (Local CI/CD)
-The framework enforces a **Mandatory Work Cycle** through a unified `./scripts/sync.sh` script:
-- **Linting:** Automatic syntax correction via `Ruff`.
-- **Type Safety:** Strict type-checking via `Mypy` to prevent async/logic bugs.
-- **Empirical Testing:** Automated `Pytest` execution. Failures are cached in `.vibe/test_failures.log` for self-healing.
-- **Dependency Audit:** AST-based scanning to ensure `requirements-dev.txt` is always up to date.
+### 2. Agent-First Architecture
+- **Automatic Context Maintenance**: The repository actively maintains its own `REPO_MAP.md` and `SYSTEM_STATUS.md`.
+- **Slash Protocol Sync**: Custom protocols ensure agents always have a "Context Diet"—reading only what they need to execute the next micro-step.
+- **Zero-Ambiguity Setup**: `./scripts/bootstrap.sh` and `./scripts/install_hooks.sh` ensure the environment is perfectly primed for autonomous work.
 
 ### 3. Infinite Scaling & Token Efficiency
 - **The Context Diet**: Protocols ensure the AI only reads what it needs, saving thousands of tokens per hour.
@@ -41,7 +35,18 @@ An AI-optimized search tool. Instead of reading entire knowledge files, the AI c
 ---
 
 ## 📁 Architectural Overview
-...
+
+The framework operates on a continuous feedback loop designed for both AI and human efficiency:
+
+1.  **Agent Commands (`/continue`)**: AI reads the current state from `docs/` and plans the next step.
+2.  **Implementation**: Changes are applied to `src/` and `tests/`.
+3.  **Sync & Check (`scripts/sync.sh`)**: 
+    -   `fix.sh` auto-heals linting/formatting.
+    -   `check.sh` enforces strict verification (types, tests, dependencies).
+    -   Failure results in a non-zero exit code, blocking commits.
+4.  **Status Generation**: `generate_status.py` parses machine-readable results into the `SYSTEM_STATUS.md` dashboard.
+5.  **Handoff (`/summarize`)**: Progress is archived, and the next session is primed.
+
 ---
 
 ## 🛠️ Setup Instructions

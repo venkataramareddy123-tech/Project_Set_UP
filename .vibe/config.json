@@ -1,0 +1,22 @@
+{
+  "TEMPLATE_VERSION": "3.1.0",
+  "STATUS_SCHEMA_VERSION": "1",
+  "supported_platforms": ["linux", "darwin"],
+  "required_scripts": [
+    "scripts/fix.sh",
+    "scripts/check.sh",
+    "scripts/sync.sh",
+    "scripts/install_hooks.sh"
+  ],
+  "required_docs": [
+    "docs/CONTEXT.md",
+    "docs/ROADMAP.md",
+    "docs/REPO_MAP.md",
+    "docs/ACTIVE_TASK.md",
+    "docs/AGENT_CONTRACT.md"
+  ],
+  "required_status_files": [
+    ".vibe/check_summary.json",
+    ".vibe/test_failures.log"
+  ]
+}

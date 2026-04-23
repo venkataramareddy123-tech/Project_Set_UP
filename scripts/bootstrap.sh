@@ -60,4 +60,8 @@ if [ "$RESET_GIT" == "y" ]; then
     echo "✨ Git history reset."
 fi
 
+# 6. Install Hooks
+echo "🪝  Installing Git hooks..."
+./scripts/install_hooks.sh
+
 echo "✅ $NEW_NAME is ready for Vibe Coding."

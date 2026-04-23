@@ -65,6 +65,8 @@ python3 scripts/restore_snapshot.py before-refactor
 3. Work in small slices and run `./scripts/sync.sh` after each meaningful change.
 4. Commit only when `docs/SYSTEM_STATUS.md` reflects the expected machine-verified state.
 
+`/continue` and `/summarize` are intended to be repo-local. Start the agent session from the project directory you want to work on, and the workflow should use that repository's local `docs/` and `.vibe/` state rather than any other project's memory.
+
 ## Notes
 
 - Generated runtime artifacts in `.vibe/*.log` and `.vibe/check_summary.json` are intentionally not committed.

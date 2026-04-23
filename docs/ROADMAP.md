@@ -16,3 +16,4 @@
 
 - 2026-04-23: Template reset into a neutral agent-first starter.
 - 2026-04-23: Upgraded the starter toward production-ready bootstrap profiles, safer iteration tooling, and more trustworthy status reporting.
+- 2026-04-23: Clarified that `/continue` and related workflow state are always scoped to the repository where the agent session starts.

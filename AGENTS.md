@@ -15,6 +15,8 @@ Treat `docs/CONTEXT.md` as the workflow contract and the other files as current 
 
 If the user types `/continue` or a close misspelling, treat it as a workflow command even if the client does not expose it as a real slash command.
 
+`/continue` is always relative to the repository where the current agent session was started. If the operator starts a session from another project directory, use that project's local `AGENTS.md`, `docs/`, and `.vibe/` files instead of carrying state across repositories.
+
 For `/continue`:
 1. Read the files above.
 2. Check `.vibe/test_failures.log` first when it exists and is non-empty.
@@ -34,5 +36,7 @@ For `/summarize`:
 After any code edit:
 1. Run `./scripts/sync.sh`.
 2. Update `docs/ROADMAP.md` if task state changed.
+
+Agents must never pull roadmap, active task, or health state from another workspace unless the user explicitly asks for cross-repo work.
 
 For significant architectural decisions, create an ADR in `docs/ADRs/`.
